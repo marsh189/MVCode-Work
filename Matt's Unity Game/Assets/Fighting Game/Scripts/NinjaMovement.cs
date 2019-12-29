@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NinjaMovement : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class NinjaMovement : MonoBehaviour
     public Transform attackPoint;
     public float attackRange;
     public LayerMask enemyLayers;
+    public Text scoreText;
+    public int score;
 
     public float runSpeed = 40f;
 
@@ -19,10 +22,12 @@ public class NinjaMovement : MonoBehaviour
     bool jump = false;
     bool crouch = false;
     public bool hasSword;
+    public float AttackStrength = 20;
 
     // Update is called once per frame
     void Update()
     {
+        scoreText.text = "Score: " + score;
         if(hasSword)
         {
             animator.runtimeAnimatorController = swordAnimatorController;
@@ -86,7 +91,8 @@ public class NinjaMovement : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("We hit " + enemy.name);
+            int killScore = enemy.gameObject.GetComponent<EnemyController>().Damage(AttackStrength);
+            score += killScore;
         }
     }
 
