@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class NinjaController : MonoBehaviour
 {
     [SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
-    [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
+    //[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
     [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
@@ -24,6 +24,8 @@ public class NinjaController : MonoBehaviour
     private Vector3 m_Velocity = Vector3.zero;
     public bool isAttacking = false;
 
+    LevelManager lm;
+
     [Header("Events")]
     [Space]
 
@@ -37,6 +39,7 @@ public class NinjaController : MonoBehaviour
 
     private void Awake()
     {
+        lm = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
         if (OnLandEvent == null)
@@ -48,6 +51,11 @@ public class NinjaController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(lm.gameOver)
+        {
+            this.enabled = false;
+        }
+
         bool wasGrounded = m_Grounded;
         m_Grounded = false;
 

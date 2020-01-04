@@ -7,22 +7,28 @@ public class EnemyController : MonoBehaviour
 {
     public Animator animator;
 
+    [Header("Health")]
     public int scoreForKill;
     public float maxHealth;
     public Slider healthBar;
 
+    [Header("Movement")]
     public float speed;
     public float distance;
     public Transform groundCheck;
     bool movingRight = true;
 
+    [Header("Attack")]
     public int attackTime;
     public float attackRange;
+    public float attackDamage;
     public Transform playerCheck;
     public LayerMask playerLayer;
 
     float health;
     int timer = 0;
+
+    LevelManager lm;
 
     // Start is called before the first frame update
     void Start()
@@ -30,11 +36,18 @@ public class EnemyController : MonoBehaviour
         health = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = maxHealth;
+
+        lm = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(lm.gameOver)
+        {
+            this.enabled = false;
+        }
+
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             transform.Translate(Vector2.right * speed * Time.deltaTime);
@@ -63,7 +76,7 @@ public class EnemyController : MonoBehaviour
 
                 foreach (Collider2D player in hitPlayers)
                 {
-                    Destroy(player.gameObject);
+                    player.gameObject.GetComponent<NinjaHealth>().Damage(attackDamage);
                 }
                 timer = 0;
             }

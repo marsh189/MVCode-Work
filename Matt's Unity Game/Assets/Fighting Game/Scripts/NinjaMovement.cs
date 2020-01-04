@@ -5,29 +5,32 @@ using UnityEngine.UI;
 
 public class NinjaMovement : MonoBehaviour
 {
+    [Header("Animation")]
     public NinjaController controller;
     public RuntimeAnimatorController swordAnimatorController;
     public RuntimeAnimatorController animatorController;
     public Animator animator;
 
+    [Header("Attacking")]
     public Transform attackPoint;
     public float attackRange;
     public LayerMask enemyLayers;
     public Text scoreText;
     public int score;
+    public bool hasSword;
+    public float AttackStrength = 20;
 
+    [Header("Movement")]
     public float runSpeed = 40f;
-
     float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
-    public bool hasSword;
-    public float AttackStrength = 20;
 
     // Update is called once per frame
     void Update()
     {
         scoreText.text = "Score: " + score;
+        
         if(hasSword)
         {
             animator.runtimeAnimatorController = swordAnimatorController;

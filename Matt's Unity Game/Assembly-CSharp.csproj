@@ -56,10 +56,12 @@
      <Compile Include="Assets\Fighting Game\FreePixelMob\Mobs.cs" />
      <Compile Include="Assets\Fighting Game\Scripts\EnemyCanvasFix.cs" />
      <Compile Include="Assets\Fighting Game\Scripts\EnemyController.cs" />
+     <Compile Include="Assets\Fighting Game\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Fighting Game\Scripts\NinjaController.cs" />
+     <Compile Include="Assets\Fighting Game\Scripts\NinjaHealth.cs" />
      <Compile Include="Assets\Fighting Game\Scripts\NinjaMovement.cs" />
+     <Compile Include="Assets\Fighting Game\Scripts\PlayerCheck.cs" />
      <Compile Include="Assets\KillBox.cs" />
-     <Compile Include="Assets\PlayerCheck.cs" />
      <Compile Include="Assets\Xmas Game\Scripts\CharacterController.cs" />
      <Compile Include="Assets\Xmas Game\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Xmas Game\Scripts\PlayerShoot.cs" />
