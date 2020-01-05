@@ -9,6 +9,7 @@ public class PlayerCheck : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Player"))
         {
+            //GetComponentInParent<EnemyController>().animator.SetBool("Walk", false);
             GetComponentInParent<EnemyController>().animator.SetTrigger("Attack");
         }
     }

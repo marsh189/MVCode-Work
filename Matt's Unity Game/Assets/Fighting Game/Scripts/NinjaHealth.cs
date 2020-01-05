@@ -25,13 +25,15 @@ public class NinjaHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!lm.gameOver && health <= 0)
+        healthBar.value = health;
+
+        if (health <= 0)
         {
-            StartCoroutine(lm.FadeCanvas(deathCanvas, 0f, 1f, 1.5f));
-        }
-        else
-        {
-            healthBar.value = health;
+            if (!lm.gameOver)
+            {
+                lm.gameOver = true;
+                StartCoroutine(lm.FadeCanvas(deathCanvas, 0f, 1f, 1.5f));
+            }
         }
     }
 
@@ -40,6 +42,5 @@ public class NinjaHealth : MonoBehaviour
 
         health -= dmg;
         GetComponent<NinjaMovement>().animator.SetTrigger("isHurt");
-        Debug.Log(health);
     }
 }

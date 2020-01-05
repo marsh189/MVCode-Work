@@ -26,44 +26,53 @@ public class NinjaMovement : MonoBehaviour
     bool jump = false;
     bool crouch = false;
 
+    LevelManager lm;
+
+    void Start()
+    {
+        lm = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = "Score: " + score;
-        
-        if(hasSword)
+        if (!lm.gameOver)
         {
-            animator.runtimeAnimatorController = swordAnimatorController;
-        }
-        else
-        {
-            animator.runtimeAnimatorController = animatorController;
-        }
+            scoreText.text = "Score: " + score;
 
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+            if (hasSword)
+            {
+                animator.runtimeAnimatorController = swordAnimatorController;
+            }
+            else
+            {
+                animator.runtimeAnimatorController = animatorController;
+            }
 
-        animator.SetFloat("speed", Mathf.Abs(horizontalMove));
+            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            jump = true;
-            animator.SetBool("isJumping", true);
-        }
+            animator.SetFloat("speed", Mathf.Abs(horizontalMove));
 
-        if(Input.GetButtonDown("Fire1") && hasSword)
-        {
-            Attack();
-        }
+            if (Input.GetButtonDown("Jump"))
+            {
+                jump = true;
+                animator.SetBool("isJumping", true);
+            }
 
-        if (Input.GetButtonDown("Crouch"))
-        {
-            crouch = true;
+            if (Input.GetButtonDown("Fire1") && hasSword)
+            {
+                Attack();
+            }
+
+            if (Input.GetButtonDown("Crouch"))
+            {
+                crouch = true;
+            }
+            else if (Input.GetButtonUp("Crouch"))
+            {
+                crouch = false;
+            }
         }
-        else if (Input.GetButtonUp("Crouch"))
-        {
-            crouch = false;
-        }
-        
 
     }
 

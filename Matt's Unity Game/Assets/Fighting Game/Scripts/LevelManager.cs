@@ -39,6 +39,11 @@ public class LevelManager : MonoBehaviour
             yield return new WaitForEndOfFrame(); // wait for the next frame before continuing the loop
         }
         canvas.alpha = endAlpha; // force the alpha to the end alpha before finishing – this is here to mitigate any rounding errors, e.g. leaving the alpha at 0.01 instead of 0
-        gameOver = true;
+        canvas.interactable = true;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

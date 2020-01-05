@@ -27,6 +27,7 @@ public class EnemyController : MonoBehaviour
 
     float health;
     int timer = 0;
+    bool hasDamaged;
 
     LevelManager lm;
 
@@ -45,11 +46,13 @@ public class EnemyController : MonoBehaviour
     {
         if(lm.gameOver)
         {
+            animator.enabled = false;
             this.enabled = false;
         }
 
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attacking") && !animator.GetCurrentAnimatorStateInfo(0).IsName("HurtPlayer"))
         {
+
             transform.Translate(Vector2.right * speed * Time.deltaTime);
 
             RaycastHit2D groundInfo = Physics2D.Raycast(groundCheck.position, Vector2.down, distance);
@@ -67,22 +70,23 @@ public class EnemyController : MonoBehaviour
                     movingRight = true;
                 }
             }
+            hasDamaged = false;
         }
         else
         {
-            if (timer >= attackTime)
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("HurtPlayer"))
             {
                 Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(playerCheck.position, attackRange, playerLayer);
 
                 foreach (Collider2D player in hitPlayers)
                 {
-                    player.gameObject.GetComponent<NinjaHealth>().Damage(attackDamage);
+                    if (!hasDamaged)
+                    {
+                        player.gameObject.GetComponent<NinjaHealth>().Damage(attackDamage);
+                        hasDamaged = true;
+                    }
+                    
                 }
-                timer = 0;
-            }
-            else
-            {
-                timer++;
             }
         }
     }
