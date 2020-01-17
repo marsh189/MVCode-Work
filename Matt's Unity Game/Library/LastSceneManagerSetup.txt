@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Fighting Game/NewScene.unity
+- path: Assets/Fighting Game/Menu.unity
   isLoaded: 1
   isActive: 1
