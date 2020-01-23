@@ -7,7 +7,9 @@ public class Shoot : MonoBehaviour
 
     public Player player;
     public Transform spawnPoint;
-    Weapon mainWeapon;
+
+    [HideInInspector]
+    public Weapon mainWeapon;
 
     float nextFire;
 

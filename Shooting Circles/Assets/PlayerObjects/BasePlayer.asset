@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BasePlayer
   m_EditorClassIdentifier: 
   speed: 5
-  health: 5
-  shield: 5
+  health: 100
+  shield: 20
   weapon: {fileID: 11400000, guid: a7af99124c05d264291bf07edefdf4e1, type: 2}
