@@ -5,12 +5,13 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public Enemy enemy;
-    Rigidbody2D rb;
-    GameObject player;
+    public ParticleSystem deathParticle;
     public float MinDist = 0.2f;
 
     Vector2 moveDirection;
     float health;
+    Rigidbody2D rb;
+    GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,7 @@ public class EnemyController : MonoBehaviour
         health -= damage;
         if(health <= 0)
         {
+            Instantiate(deathParticle, transform.position, deathParticle.transform.rotation);
             Destroy(gameObject);
         }
     }
@@ -61,6 +63,7 @@ public class EnemyController : MonoBehaviour
     {
         if(collision.gameObject.tag == "Bullet")
         {
+            Destroy(collision.gameObject);
             TakeDamage(player.GetComponent<Shoot>().mainWeapon.damage);
         }
     }

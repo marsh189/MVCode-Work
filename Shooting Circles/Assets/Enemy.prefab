@@ -134,4 +134,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: 189efe0313254c147a5bccd181a0f014, type: 2}
+  deathParticle: {fileID: 1382353989029961048, guid: f2f05b7d9f64f3b46945b22bc82301af,
+    type: 3}
   MinDist: 0.2

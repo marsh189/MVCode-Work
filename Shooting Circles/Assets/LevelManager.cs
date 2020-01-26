@@ -9,13 +9,14 @@ public class LevelManager : MonoBehaviour
     public Transform[] enemySpawnPoints;
     public float spawnRate;
     public float waveCount;
-
+    public Texture2D cursor;
     float nextSpawn;
 
     // Start is called before the first frame update
     void Start()
     {
         nextSpawn = Time.time;
+        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
     }
 
     // Update is called once per frame
