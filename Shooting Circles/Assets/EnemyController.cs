@@ -49,6 +49,7 @@ public class EnemyController : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(enemy.damage);
             Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "Wall")
@@ -62,6 +63,7 @@ public class EnemyController : MonoBehaviour
         if(collision.gameObject.tag == "Bullet")
         {
             TakeDamage(player.GetComponent<Shoot>().mainWeapon.damage);
+            Destroy(collision.gameObject);
         }
     }
 }

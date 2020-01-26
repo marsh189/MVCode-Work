@@ -10,18 +10,24 @@ public class LevelManager : MonoBehaviour
     public float spawnRate;
     public float waveCount;
 
+    public string gameStatus;
+
     float nextSpawn;
 
     // Start is called before the first frame update
     void Start()
     {
         nextSpawn = Time.time;
+        gameStatus = "Playing";
     }
 
     // Update is called once per frame
     void Update()
     {
-        SpawnWave();
+        if (gameStatus == "Playing")
+        {
+            SpawnWave();
+        }
     }
 
     void SpawnWave()
