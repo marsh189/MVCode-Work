@@ -9,7 +9,9 @@ public class LevelManager : MonoBehaviour
     public Transform[] enemySpawnPoints;
     public float spawnRate;
     public float waveCount;
+    public string gameState;
     public Texture2D cursor;
+
     float nextSpawn;
 
     // Start is called before the first frame update
@@ -17,12 +19,16 @@ public class LevelManager : MonoBehaviour
     {
         nextSpawn = Time.time;
         Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+        gameState = "Playing";
     }
 
     // Update is called once per frame
     void Update()
     {
-        SpawnWave();
+        if (gameState == "Playing")
+        {
+            SpawnWave();
+        }
     }
 
     void SpawnWave()

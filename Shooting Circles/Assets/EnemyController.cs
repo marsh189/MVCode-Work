@@ -42,6 +42,7 @@ public class EnemyController : MonoBehaviour
         health -= damage;
         if(health <= 0)
         {
+            player.GetComponent<PlayerController>().HandleScore(enemy.points);
             Instantiate(deathParticle, transform.position, deathParticle.transform.rotation);
             Destroy(gameObject);
         }
@@ -51,6 +52,7 @@ public class EnemyController : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(enemy.damage);
             Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "Wall")
