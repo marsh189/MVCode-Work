@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a49054fc98b50e498ea1f66e6088caa, type: 3}
   m_Name: BasePlayer
   m_EditorClassIdentifier: 
-  speed: 5
-  health: 100
-  shield: 20
+  speed: 3
+  health: 3
+  shield: 3
   weapon: {fileID: 11400000, guid: a7af99124c05d264291bf07edefdf4e1, type: 2}

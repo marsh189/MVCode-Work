@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameObject: {fileID: 4459516677215522828, guid: 11f3e2f48e07f7c42a4df3774b6d7e0b,
     type: 3}
-  health: 50
-  speed: 3
-  damage: 5
-  points: 0
+  health: 3
+  speed: 2
+  damage: 1
+  points: 1

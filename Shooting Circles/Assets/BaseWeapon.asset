@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BaseWeapon
   m_EditorClassIdentifier: 
   fireRate: 0.5
-  bulletSpeed: 20
-  damage: 50
+  bulletSpeed: 2
+  damage: 3
   bullet: {fileID: 1870194002502868676, guid: 92d6d9a6e9e048240a517e20a968b823, type: 3}

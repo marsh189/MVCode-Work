@@ -17,17 +17,21 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     float health;
     float shield;
+    float speed;
     LevelManager lm;
+
+    float score;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         lm = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-        health = player.health;
-        shield = player.shield;
+        health = player.health * Conversions.health;
+        shield = player.shield * Conversions.shield;
+        speed = player.speed * Conversions.speed;
 
 
-        healthSlider.value = health;
+        healthSlider.maxValue = health;
         shieldSlider.maxValue = shield;
 
     }
@@ -36,7 +40,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         shieldSlider.value = shield;
-        healthSlider.maxValue = health;
+        healthSlider.value = health;
 
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
@@ -64,7 +68,7 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
 
-        rb.MovePosition(rb.position + movement * player.speed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 
     public void TakeDamage(float damage)
@@ -82,7 +86,7 @@ public class PlayerController : MonoBehaviour
                 shield = 0;
                 health -= leftOver;
             }
-            else if(shield == 0)
+            else if(shield <= 0)
             {
                 health -= damage;
             }
@@ -95,8 +99,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void HandleScore(float score)
+    public void HandleScore(float s)
     {
-
+        this.score += s;
+        Debug.Log(score);
     }
 }

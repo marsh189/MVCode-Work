@@ -13,11 +13,19 @@ public class Shoot : MonoBehaviour
 
     float nextFire;
 
+    float bulletSpeed;
+
+    [HideInInspector]
+    public float damage;
+
     void Start()
     {
         mainWeapon = player.weapon;
         spawnPoint = GameObject.Find("BulletSpawnPoint").transform;
         nextFire = Time.time;
+
+        bulletSpeed = mainWeapon.bulletSpeed * Conversions.bulletSpeed;
+        damage = mainWeapon.damage * Conversions.damage;
     }
 
     // Update is called once per frame
@@ -38,6 +46,6 @@ public class Shoot : MonoBehaviour
     void Fire()
     {
         GameObject bullet = Instantiate(mainWeapon.bullet, spawnPoint.position, spawnPoint.rotation) as GameObject;
-        bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * mainWeapon.bulletSpeed, ForceMode2D.Impulse);
+        bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * bulletSpeed, ForceMode2D.Impulse);
     }
 }
