@@ -73,7 +73,9 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if(shield >= damage)
+        Camera.main.gameObject.GetComponent<CameraShake>().CamShakePlayer();
+
+        if (shield >= damage)
         {
             shield -= damage;
         }

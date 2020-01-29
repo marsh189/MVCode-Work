@@ -11,4 +11,9 @@ public class CameraShake : MonoBehaviour
     {
         camAnim.SetTrigger("shake");
     }
+
+    public void CamShakePlayer()
+    {
+        camAnim.SetTrigger("PlayerHit");
+    }
 }
