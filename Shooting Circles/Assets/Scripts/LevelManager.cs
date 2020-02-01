@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         nextSpawn = Time.time;
         Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
         gameState = "Playing";

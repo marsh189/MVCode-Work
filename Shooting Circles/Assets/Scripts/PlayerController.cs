@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        Instantiate(player.obj, this.transform);
         rb = GetComponent<Rigidbody2D>();
         lm = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         health = player.health * Conversions.health;

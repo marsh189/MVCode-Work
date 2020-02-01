@@ -10,5 +10,5 @@ public class Player : ScriptableObject
     public float shield = 5f;
 
     public Weapon weapon;
-
+    public GameObject obj;
 }
