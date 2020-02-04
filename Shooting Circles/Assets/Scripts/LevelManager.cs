@@ -30,6 +30,11 @@ public class LevelManager : MonoBehaviour
         {
             SpawnWave();
         }
+
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            gameState = "Paused";
+        }
     }
 
     void SpawnWave()

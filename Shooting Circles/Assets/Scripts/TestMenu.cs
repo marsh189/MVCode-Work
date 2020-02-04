@@ -13,21 +13,24 @@ public class TestMenu : MonoBehaviour
 
     public void Base()
     {
-        currentPlayer.shield = playerTypes[0].shield;
-        currentPlayer.health = playerTypes[0].health;
-        currentPlayer.speed = playerTypes[0].speed;
+        PlayerPrefs.SetFloat("Player Shield", playerTypes[0].shield);
+        PlayerPrefs.SetFloat("Player Health", playerTypes[0].health);
+        PlayerPrefs.SetFloat("Player Speed", playerTypes[0].speed);
+        PlayerPrefs.SetFloat("Player Score", 0);
     }
     public void Tank()
     {
-        currentPlayer.shield = playerTypes[1].shield;
-        currentPlayer.health = playerTypes[1].health;
-        currentPlayer.speed = playerTypes[1].speed;
+        PlayerPrefs.SetFloat("Player Shield", playerTypes[1].shield);
+        PlayerPrefs.SetFloat("Player Health", playerTypes[1].health);
+        PlayerPrefs.SetFloat("Player Speed", playerTypes[1].speed);
+        PlayerPrefs.SetFloat("Player Score", 0);
     }
     public void Speedy()
     {
-        currentPlayer.shield = playerTypes[2].shield;
-        currentPlayer.health = playerTypes[2].health;
-        currentPlayer.speed = playerTypes[2].speed;
+        PlayerPrefs.SetFloat("Player Shield", playerTypes[2].shield);
+        PlayerPrefs.SetFloat("Player Health", playerTypes[2].health);
+        PlayerPrefs.SetFloat("Player Speed", playerTypes[2].speed);
+        PlayerPrefs.SetFloat("Player Score", 0);
     }
 
     public void BaseWeapon()
