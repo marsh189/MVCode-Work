@@ -23,8 +23,10 @@ public static class SavedData
         get { return PlayerPrefs.GetFloat("Player Score"); }
     }
 
-    public static Player SetUpPlayer(Player currPlayer)
+    public static Player SetUpPlayer()
     {
+
+        Player currPlayer = new Player();
         currPlayer.shield = playerShield;
         currPlayer.health = playerHealth;
         currPlayer.speed = playerSpeed;

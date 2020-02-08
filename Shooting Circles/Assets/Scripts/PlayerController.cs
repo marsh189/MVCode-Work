@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public Player player;
     public Slider healthSlider;
     public Slider shieldSlider;
-
+    public Text scoreText;
 
     Vector2 mousePosition;
 
@@ -24,16 +24,19 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        //player = SavedData.SetUpPlayer();
         Instantiate(player.obj, this.transform);
         rb = GetComponent<Rigidbody2D>();
         lm = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         health = player.health * Conversions.health;
         shield = player.shield * Conversions.shield;
         speed = player.speed * Conversions.speed;
-
+        score = player.score;
 
         healthSlider.maxValue = health;
         shieldSlider.maxValue = shield;
+
+
 
     }
 
@@ -55,7 +58,25 @@ public class PlayerController : MonoBehaviour
         {
             Move();
             MouseRotate();
+            if (score > 0)
+            {
+                scoreText.text = score.ToString();
+            }
         }
+        else
+        {
+            scoreText.text = "";
+        }
+
+        if(lm.gameState == "Game Over")
+        {
+            SavePlayerInfo();
+        }
+    }
+
+    void SavePlayerInfo()
+    {
+        PlayerPrefs.SetFloat("Player Score", score);
     }
 
     void MouseRotate()
@@ -105,6 +126,5 @@ public class PlayerController : MonoBehaviour
     public void HandleScore(float s)
     {
         this.score += s;
-        Debug.Log(score);
     }
 }

@@ -9,18 +9,32 @@ public class LevelManager : MonoBehaviour
     public Enemy[] enemyTypes;
     public Transform[] enemySpawnPoints;
     public float spawnRate;
-    public float waveCount;
+
     public string gameState;
     public Texture2D cursor;
     public GameObject pauseCanvas;
     public Text text;
 
-    public float timeLeft = 5f;
-    float nextSpawn;
-
+    public float timeLeft = 5f;//countDown time
+    float nextSpawn; //time for next enemy spawn
+    float level;
+    float waveCount; //amount of waves in level (level + 2)
+    float currentWave = 1;
+    float enemiesInWave; //num of enemies in each wave (level * 10)   
+    float enemiesSpawned;
     // Start is called before the first frame update
     void Start()
     {
+        if (PlayerPrefs.GetInt("Level") > 0)
+        {
+            level = PlayerPrefs.GetInt("Level");
+        }
+        else
+        {
+            level = 1;
+        }
+        waveCount = level + Conversions.waves;
+        enemiesInWave = level * Conversions.enemies;
 
         nextSpawn = Time.time;
         Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
@@ -32,7 +46,10 @@ public class LevelManager : MonoBehaviour
     {
         if (gameState == "Playing")
         {
-            SpawnWave();
+            if (currentWave <= waveCount)
+            {
+                SpawnWave();
+            }
         }
         if(gameState == "Paused")
         {
@@ -60,10 +77,18 @@ public class LevelManager : MonoBehaviour
 
     void SpawnWave()
     {
-        if (Time.time >= nextSpawn)
+        if (enemiesSpawned < enemiesInWave)
         {
-            Instantiate(enemyTypes[0].gameObject, enemySpawnPoints[Random.Range(0, enemySpawnPoints.Length)].position, enemyTypes[0].gameObject.transform.rotation);
-            nextSpawn = Time.time + spawnRate;
+            if (Time.time >= nextSpawn)
+            {
+                Instantiate(enemyTypes[0].gameObject, enemySpawnPoints[Random.Range(0, enemySpawnPoints.Length)].position, enemyTypes[0].gameObject.transform.rotation);
+                nextSpawn = Time.time + spawnRate;
+                enemiesSpawned++;
+            }
+        }
+        else
+        {
+            StartCoroutine("WaitBetweenWaves");
         }
     }
 
@@ -86,5 +111,18 @@ public class LevelManager : MonoBehaviour
             timeLeft = 4f;
             gameState = "Playing";
         }
+    }
+
+    void SaveLevelInfo()
+    {
+        //PlayerPrefs.SetInt("Level", )
+    }
+
+
+    IEnumerator WaitBetweenWaves()
+    {
+        yield return new WaitForSeconds(3);
+        currentWave++;
+        Debug.Log(currentWave);
     }
 }
