@@ -22,6 +22,10 @@ public class LevelManager : MonoBehaviour
     float currentWave = 1;
     float enemiesInWave; //num of enemies in each wave (level * 10)   
     float enemiesSpawned;
+
+    public float timeBetweenWaves;
+    float timerForWaves;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +52,17 @@ public class LevelManager : MonoBehaviour
         {
             if (currentWave <= waveCount)
             {
-                SpawnWave();
+                if (enemiesSpawned < enemiesInWave)
+                {
+                    if (Time.time >= nextSpawn)
+                    {
+                        SpawnEnemy();
+                    }
+                }
+                else
+                {
+                    WaitBetweenWaves();
+                }
             }
         }
         if(gameState == "Paused")
@@ -75,21 +89,11 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    void SpawnWave()
+    void SpawnEnemy()
     {
-        if (enemiesSpawned < enemiesInWave)
-        {
-            if (Time.time >= nextSpawn)
-            {
-                Instantiate(enemyTypes[0].gameObject, enemySpawnPoints[Random.Range(0, enemySpawnPoints.Length)].position, enemyTypes[0].gameObject.transform.rotation);
-                nextSpawn = Time.time + spawnRate;
-                enemiesSpawned++;
-            }
-        }
-        else
-        {
-            StartCoroutine("WaitBetweenWaves");
-        }
+        Instantiate(enemyTypes[0].gameObject, enemySpawnPoints[Random.Range(0, enemySpawnPoints.Length)].position, enemyTypes[0].gameObject.transform.rotation);
+        nextSpawn = Time.time + spawnRate;
+        enemiesSpawned++;
     }
 
     void CountDown()
@@ -119,10 +123,17 @@ public class LevelManager : MonoBehaviour
     }
 
 
-    IEnumerator WaitBetweenWaves()
+    void WaitBetweenWaves()
     {
-        yield return new WaitForSeconds(3);
-        currentWave++;
-        Debug.Log(currentWave);
+        if(timerForWaves < timeBetweenWaves)
+        {
+            timerForWaves += Time.deltaTime;
+        }
+        else if(Mathf.Round(timerForWaves) == timeBetweenWaves)
+        {
+            currentWave++;
+            enemiesSpawned = 0;
+            timerForWaves = 0; 
+        }
     }
 }
