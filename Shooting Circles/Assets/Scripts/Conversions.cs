@@ -12,5 +12,5 @@ public static class Conversions
     public static float points = 100;
 
     public static float enemies = 10;
-    public static float waves = 2;
+    public static float waves = 1;
 }

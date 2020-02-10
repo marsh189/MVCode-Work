@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     float speed;
     float damage;
     float points;
+    LevelManager lm;
 
     // Start is called before the first frame update
     void Start()
@@ -26,12 +27,13 @@ public class EnemyController : MonoBehaviour
         speed = enemy.speed * Conversions.speed;
         damage = enemy.damage * Conversions.damage;
         points = enemy.points * Conversions.points;
+        lm = GameObject.Find("LevelManager").GetComponent<LevelManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameObject.Find("LevelManager").GetComponent<LevelManager>().gameState == "Playing")
+        if (lm.gameState == "Playing")
         {
             Vector2 playerPos = player.transform.position;
             Vector2 direction = playerPos - rb.position;
@@ -55,6 +57,7 @@ public class EnemyController : MonoBehaviour
             player.GetComponent<PlayerController>().HandleScore(points);
             Camera.main.gameObject.GetComponent<CameraShake>().CamShake();
             Instantiate(deathParticle, transform.position, deathParticle.transform.rotation);
+            lm.enemies.Remove(gameObject);
             Destroy(gameObject);
         }
     }
@@ -64,6 +67,7 @@ public class EnemyController : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
+            lm.enemies.Remove(gameObject);
             Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "Wall")

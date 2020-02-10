@@ -31,13 +31,15 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetButton("Fire1"))
+        if (GameObject.Find("LevelManager").GetComponent<LevelManager>().gameState == "Playing")
         {
-            if (Time.time >= nextFire)
+            if (Input.GetButton("Fire1"))
             {
-                Fire();
-                nextFire = Time.time + mainWeapon.fireRate;
+                if (Time.time >= nextFire)
+                {
+                    Fire();
+                    nextFire = Time.time + mainWeapon.fireRate;
+                }
             }
         }
 

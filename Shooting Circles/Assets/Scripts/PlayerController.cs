@@ -17,10 +17,11 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     float health;
     float shield;
-    float speed;
+    public float speed;
     LevelManager lm;
 
-    float score;
+    [HideInInspector]
+    public float score;
 
     void Start()
     {
@@ -74,9 +75,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void SavePlayerInfo()
+    public void SavePlayerInfo()
     {
         PlayerPrefs.SetFloat("Player Score", score);
+        PlayerPrefs.SetFloat("Player Shield", player.shield);
+        PlayerPrefs.SetFloat("Player Health", player.health);
+        PlayerPrefs.SetFloat("Player Speed", player.speed);
     }
 
     void MouseRotate()
