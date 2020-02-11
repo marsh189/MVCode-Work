@@ -15,6 +15,6 @@ MonoBehaviour:
   speed: 3
   health: 3
   shield: 3
-  score: 0
+  score: 600
   weapon: {fileID: 11400000, guid: ac217555c599efc4981dd734ad446290, type: 2}
   obj: {fileID: 2873403066503046903, guid: 4fd6bb0c972de4f4aae0b0eb89e2c94a, type: 3}

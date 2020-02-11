@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\EnemyController.cs" />
      <Compile Include="Assets\Scripts\LevelButtons.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
+     <Compile Include="Assets\Scripts\MenuManager.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\SavedData.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\Enemy.cs" />

@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        //player = SavedData.SetUpPlayer();
+        player = SavedData.SetUpPlayer(player);
+
         Instantiate(player.obj, this.transform);
         rb = GetComponent<Rigidbody2D>();
         lm = GameObject.Find("LevelManager").GetComponent<LevelManager>();
@@ -81,6 +82,7 @@ public class PlayerController : MonoBehaviour
         PlayerPrefs.SetFloat("Player Shield", player.shield);
         PlayerPrefs.SetFloat("Player Health", player.health);
         PlayerPrefs.SetFloat("Player Speed", player.speed);
+        PlayerPrefs.Save();
     }
 
     void MouseRotate()
