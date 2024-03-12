@@ -5,7 +5,7 @@ This is a more advanced version of the MVCode Lesson project that I had worked o
 - Use of Scriptable Objects to make a base type player that can be upgraded.
 - Upgrade system to give the player more health, better weapon, faster speed.
 - Camera shake when a enemy is killed or the player is hit.
-- Sending information from one scene to another. (The player could choose between different types of characters that had different base stats, needed to send the chose character on to the game scene from the menu)
+- Sending information from one scene to another. (The player could choose between different types of characters that had different base stats, needed to send the chosen character on to the game scene from the menu)
 
 
 ## Game Images
