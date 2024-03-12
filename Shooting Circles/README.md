@@ -6,3 +6,10 @@ This is a more advanced version of the MVCode Lesson project that I had worked o
 - Upgrade system to give the player more health, better weapon, faster speed.
 - Camera shake when a enemy is killed or the player is hit.
 - Sending information from one scene to another. (The player could choose between different types of characters that had different base stats, needed to send the chose character on to the game scene from the menu)
+
+
+## Game Images
+![Menu](https://github.com/marsh189/MVCode-Work/assets/11845697/7a7f51ff-d234-48d6-82d9-604c6b1f8aef)
+![shootingCircles](https://github.com/marsh189/MVCode-Work/assets/11845697/1b3a72e3-810b-4939-8010-b91ce9ba4e67)
+![RoundText](https://github.com/marsh189/MVCode-Work/assets/11845697/7ed99de3-ab74-4767-9538-15c100608bc3)
+![GameOver](https://github.com/marsh189/MVCode-Work/assets/11845697/2311172a-35e3-428f-8bc6-ef2a3300e424)
